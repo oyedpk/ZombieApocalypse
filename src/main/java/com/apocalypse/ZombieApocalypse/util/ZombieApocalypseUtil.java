@@ -19,37 +19,18 @@ public class ZombieApocalypseUtil {
             , List<Coordinate> zombiesFinalPostitions, Queue<Coordinate> zombiesToProcess) {
         for (char c : directionStr.toCharArray()) {
             switch (c) {
-                case 'R':
-                    if (zX == array.length - 1) {
-                        zX = 0;
-                    } else {
-                        zX = zX + 1;
-                    }
-                    break;
-                case 'L':
-                    if (zX == 0) {
-                        zX = array.length - 1;
-                    } else {
-                        zX = zX - 1;
-                    }
+                case 'D':
+                    zY = zY == array[0].length-1 ? 0 : zY+1;
                     break;
                 case 'U':
-                    if (zY == array[0].length - 1) {
-                        zY = 0;
-                    } else {
-                        zY = zY + 1;
-                    }
+                    zY = zY == 0 ? array[0].length-1 : zY-1;
                     break;
-                case 'D':
-                    if (zY == 0) {
-                        zY = array[0].length - 1;
-                    } else {
-                        zY = zY - 1;
-                    }
+                case 'R':
+                    zX = zX == array[0].length-1 ? 0 : zX+1;
                     break;
-                default:
+                case 'L':
+                    zX = zX == 0 ? array[0].length-1 : zX-1;
                     break;
-
             }
             if (array[zX][zY] > 0) {
                 LOGGER.info("zombie {} infected creature at ({},{})", zombie, zX, zY);
